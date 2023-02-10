@@ -20,7 +20,7 @@ I tested on a MacBookPro with 16 cores.
 Puma config is maxed out to match my dev laptop - see `config/puma.rb` and adjust if you are running into issues.
 
 Once server is running  you can use your favorite benchmarking tool to hit relevant endpoints.
-I used `hey` as it's pretty straightforward to setup and use.
+I used `hey` as it's pretty straightforward to setup and use. But `wrk2` produced similar results. 
 
 ## Important!!! Can't stress this enough!
 > Take the following numbers with a grain of salt - as we are rendering a basic template, and our app doesn't make any calls to DB, make any expensive calculations or serve any assets.
