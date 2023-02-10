@@ -1,0 +1,10 @@
+!!! 5
+%html
+  %head
+    %title= "Request"
+  %body{style: "background-color: #{bg_color};"}
+    %table
+      - req.each_pair do |k,v|
+        %tr
+          %th= k
+          %td= v
