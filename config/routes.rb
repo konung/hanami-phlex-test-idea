@@ -10,5 +10,7 @@ module Bookshelf
     get "haml_inline", to: "home.haml_inline"
     get "haml_template", to: "home.haml_template"
     get "phlex", to: "home.phlex"
+    get "string", to: "home.show"
+    get "show", to: "home.show"
   end
 end

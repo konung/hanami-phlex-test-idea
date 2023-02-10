@@ -20,7 +20,7 @@ I tested on a MacBookPro with 16 cores.
 Puma config is maxed out to match my dev laptop - see `config/puma.rb` and adjust if you are running into issues.
 
 Once server is running  you can use your favorite benchmarking tool to hit relevant endpoints.
-I used `hey` as it's pretty straightforward to setup and use. But `wrk2` produced similar results. 
+I used `hey` as it's pretty straightforward to setup and use. But `wrk2` produced similar results.
 
 ## Important!!! Can't stress this enough!
 > Take the following numbers with a grain of salt - as we are rendering a basic template, and our app doesn't make any calls to DB, make any expensive calculations or serve any assets.
@@ -28,7 +28,7 @@ I used `hey` as it's pretty straightforward to setup and use. But `wrk2` produce
 
 Here are my results  ( yes that's 6650 requests per second :D )
 
-Phlex response is generated in 200-600 `us` ( that's `us` not `ms` ). Essentially that's as fast as Hanami spitting back some strings.
+Phlex response is generated in 200-600 `us` ( that's `us` not `ms` ). Essentially that's almost as fast as Hanami spitting back some strings ( last example )
 
 
 
@@ -230,4 +230,53 @@ Details (average, fastest, slowest):
 Status code distribution:
   [200]	62962 responses
 
+  ```
+
+### Just doing string concat inside of Hanami Action
+
+```
+hey -c 10 -z 10s http://localhost:2300/string                                                                     915ms  Thu Feb  9 19:20:31 2023
+
+Summary:
+  Total:	10.0013 secs
+  Slowest:	0.2200 secs
+  Fastest:	0.0008 secs
+  Average:	0.0014 secs
+  Requests/sec:	7307.1173
+
+  Total data:	145178619 bytes
+  Size/request:	1986 bytes
+
+Response time histogram:
+  0.001 [1]	|
+  0.023 [73053]	|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  0.045 [7]	|
+  0.067 [0]	|
+  0.088 [10]	|
+  0.110 [0]	|
+  0.132 [0]	|
+  0.154 [0]	|
+  0.176 [0]	|
+  0.198 [0]	|
+  0.220 [10]	|
+
+
+Latency distribution:
+  10% in 0.0010 secs
+  25% in 0.0011 secs
+  50% in 0.0013 secs
+  75% in 0.0014 secs
+  90% in 0.0017 secs
+  95% in 0.0019 secs
+  99% in 0.0028 secs
+
+Details (average, fastest, slowest):
+  DNS+dialup:	0.0000 secs, 0.0008 secs, 0.2200 secs
+  DNS-lookup:	0.0000 secs, 0.0000 secs, 0.0021 secs
+  req write:	0.0000 secs, 0.0000 secs, 0.0013 secs
+  resp wait:	0.0013 secs, 0.0008 secs, 0.2144 secs
+  resp read:	0.0000 secs, 0.0000 secs, 0.0012 secs
+
+Status code distribution:
+  [200]	73081 responses
   ```

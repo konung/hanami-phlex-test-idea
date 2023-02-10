@@ -4,34 +4,28 @@ require "haml"
 module Bookshelf
   module Actions
     module Home
-      class HamlExample < Bookshelf::Action
+      class Show < Bookshelf::Action
         def handle(request, response)
           # response.body = self.class.name
           # response.body = "Welcome to Bookshelf"
           response.format = :html
-          # response.format = :json
-          #  response.body = request.env.merge({:time => Time.now}).to_json
-          #  response.body = "<time>#{Time.now}</time>"
-          #  response.body =  Haml::Template.new{ "%p{style: 'background-color: #f00;'} Haml code!" }.render
-          #           str = %Q(
-          # !!! 5
-          # %html
-          #   %head
-          #     %title= "Request"
-          #   %body{style: "background-color: ##{rand(100..999)};"}
-          #     %table
-          #       - req.each_pair do |k,v|
-          #         %tr
-          #           %th= k
-          #           %td= v
+          bg_color = "##{rand(100..999)}"
+          str = %(<html>
+          <head>
+            <title>Request</title>
+          </head>
+          <body style="background-color: #{bg_color};">
+            <table>)
 
-          # )
-          # request.env.merge({time: Time.now}).each_pair do |k, v|
-          #   #  response.body += "<p>#{k.class.name} => #{v.class.name}</p>"
-          #   # response.body << "<p>#{k} => #{v}</p>"
-          # end
+          request.env.merge({time: Time.now, bg_color: bg_color}).each_pair do |k, v|
+            str << "<tr><td>#{k}</td><td>#{v}</td></tr>"
+          end
 
-          response.body = Haml::Template.new("app/actions/home/show.haml").render(Object.new, {req: request.env.merge({time: Time.now}).to_h, bg_color: rand(100..999)})
+          str << %(</tr>
+            </table>
+          </body>
+        </html>)
+          response.body = str
         end
       end
     end
