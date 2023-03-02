@@ -15,6 +15,7 @@ gem "rake"
 gem "haml", "~> 6"
 gem "phlex", "~> 1"
 
+
 group :development, :test do
   gem "dotenv"
 end
@@ -45,3 +46,5 @@ end
 gem "slim", "~> 5.0"
 gem "hamlit", "~> 3.0"
 gem "erb", "~> 4.0"
+
+gem "papercraft", "~> 0.27"

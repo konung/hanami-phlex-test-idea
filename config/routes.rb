@@ -12,5 +12,6 @@ module Bookshelf
     get "phlex", to: "home.phlex"
     get "string", to: "home.show"
     get "show", to: "home.show"
+    get "papercraft", to: "home.papercraft"
   end
 end
