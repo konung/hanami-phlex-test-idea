@@ -3,21 +3,28 @@
 app = "hanami-phlex-test-idea"
 kill_signal = "SIGINT"
 kill_timeout = 5
-processes = []
 
 [build]
   builder = "heroku/buildpacks:20"
 
+[deploy]
+  release_command = "bin/hanami db migrate"
+
 [env]
-  PORT = "8080"
+  PORT = "2300"
+  HANAMI_ENV="production"
+
+[processes]
+  web = "bundle exec puma -C config/puma.rb"
 
 [experimental]
+  allowed_public_ports = []
   auto_rollback = true
 
 [[services]]
   http_checks = []
   internal_port = 2300
-  processes = ["app"]
+  processes = ["web"]
   protocol = "tcp"
   script_checks = []
   [services.concurrency]
