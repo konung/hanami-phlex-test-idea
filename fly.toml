@@ -12,7 +12,11 @@ kill_timeout = 5
 
 [env]
   PORT = "2300"
+  HANAMI_PORT="2300"
   HANAMI_ENV="production"
+  HANAMI_MAX_THREADS=16
+  HANAMI_MIN_THREADS=2
+  HANAMI_WEB_CONCURRENCY=8
 
 [processes]
   web = "bundle exec puma -C config/puma.rb"
