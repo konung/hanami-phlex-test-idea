@@ -48,3 +48,5 @@ gem "hamlit", "~> 3.0"
 gem "erb", "~> 4.0"
 
 gem "papercraft", "~> 0.27"
+
+gem "tipi", "~> 0.53"

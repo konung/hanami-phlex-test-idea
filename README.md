@@ -10,7 +10,7 @@ bundle install
 hanami s
 ```
 
-I was testing on Ruby 3.2.0 and `--jit` flag like so
+I was testing on Ruby 3.2.2 and `--jit` flag like so
 
 ```
 RUBYOPT="--jit" hanami s
