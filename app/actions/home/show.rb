@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "haml"
+require 'haml'
 module Bookshelf
   module Actions
     module Home
@@ -17,7 +17,7 @@ module Bookshelf
           <body style="background-color: #{bg_color};">
             <table>)
 
-          request.env.merge({time: Time.now, bg_color: bg_color}).each_pair do |k, v|
+          request.env.merge({ time: Time.now, bg_color: }).each_pair do |k, v|
             str << "<tr><td>#{k}</td><td>#{v}</td></tr>"
           end
 

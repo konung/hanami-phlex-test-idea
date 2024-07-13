@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "phlex"
+require 'phlex'
 module Bookshelf
   module Actions
     module Home
@@ -8,7 +8,8 @@ module Bookshelf
         def handle(req, res)
           res.format = :html
           bg_color = "##{rand(100..999)}"
-          res.body = PhlexTemplate.new(req: req.env.merge({time: Time.now, bg_color: bg_color}).to_h, bg_color: bg_color).call
+          res.body = PhlexTemplate.new(req: req.env.merge({ time: Time.now, bg_color: }).to_h,
+                                       bg_color:).call
         end
       end
 
@@ -21,7 +22,7 @@ module Bookshelf
         def template
           html do
             head do
-              title { "Request" }
+              title { 'Request' }
             end
             body style: "background-color: #{@bg_color};" do
               table do

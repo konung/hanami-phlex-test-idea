@@ -11,7 +11,7 @@ module Bookshelf
           ]
 
           response.format = :json
-         
+
           response.body = books.to_json
         end
       end
